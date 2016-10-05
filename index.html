@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ncbs</title>
+    
+
+    <style>
+    #body {
+    	}
+        #text{
+            
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id='text'><p>National Centre for Biological Sciences in Bangalore, Karnataka, is a research centre specialising in biological research. It is a part of the Tata Institute of Fundamental Research under the Department of Atomic Energy of the Government of India</p></div>
+
+
+<script>
+//array of image names
+var images = ["image1","image2", "image3", "image4", "image5", "image6", "image7", "image8"]
+var number = Math.random() * (7 - 1) + 1 
+number = Math.round(number);
+var src = "img/"+images[number]+".JPG";
+document.body.style.background = 'url("' + src + '")'
+
+</script>
+
+</body>
+</html>

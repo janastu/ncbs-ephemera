@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
-    integrity = "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     integrity = "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <title>NCBS</title>
   </head>
 
@@ -14,26 +14,17 @@
       part of the Tata Institute of Fundamental Research under the 
       Department of Atomic Energy of the Government of India</p>
     </div>
-    <div class="container" id="img-container"></div>
+    <div class="container">
+    	<div class="row" id="img-container"></div>
+    	<div class="row" id="thumb-container"></div>
+    </div>
+
+
   </body>
-
-  <!--Scripts here -->
-  <script>
-    var images = ["image1", "image2", "image3", "image4", 
-                 "image5", "image6", "image7", "image8"];
-
-    function getRandomImage(images, path) {
-      path = path || '../images/';
-      var num = Math.floor( Math.random() * images.length );
-      var img = images[ num ];
-      var elem = document.createElement("img");
-      elem.src = path + img + ".jpg"; 
-      elem.style.width = "50%";
-      // $("#img-container").append(elem);
-      document.getElementById('img-container').appendChild(elem);
-    }
-
-    getRandomImage(images, '../images/');
-  </script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  
+  <!--script here -->
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/underscore-min.js"></script>
+  <script src="lib/backbone-min.js"></script>
+  <script src="main.js"></script>
 </html>

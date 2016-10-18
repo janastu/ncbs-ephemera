@@ -46,11 +46,8 @@
 			font-size: 17px;
 		}
 		.captionEphImg {
-			text-align: left;
+			text-align: right;
 			color: #505050;
 			font-family: roboto;
 			font-size: 15px;
-		}
-		.pull-right {
-  				float: right !important;
 		}

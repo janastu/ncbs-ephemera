@@ -159,8 +159,7 @@ var EphermeraView = Backbone.View.extend({
         elem.style.width = "100%";
         var captionDiv = document.createElement('div');
         captionDiv.innerHTML = img.get('caption');
-       	captionDiv.className = 'captionEphImg col-md-4 pull-right';
-        // console.log("caption is", caption)
+       	captionDiv.className = 'captionEphImg col-md-12';
         this.el.appendChild(elem);
         this.el.appendChild(captionDiv);
 	}

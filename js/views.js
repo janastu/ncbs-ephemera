@@ -157,51 +157,46 @@ var EphermeraView = Backbone.View.extend({
         var elem = document.createElement("img");
         elem.src = this.path + "/" + img.get('src');
         elem.style.width = "100%";
+        var captionDiv = document.createElement('div');
+        captionDiv.innerHTML = img.get('caption');
+       	captionDiv.className = 'captionEphImg col-md-4 pull-right';
+        // console.log("caption is", caption)
         this.el.appendChild(elem);
-	}
-});
-
-var ThumbnailView = Backbone.View.extend({
-	initialize: function(obj) {
-		this.collection = obj.collection;
-	    this.path = './img/Ephemera';
-	}, 
-	render: function() {
-		for (var i = 0; i < this.collection.models.length; i ++) {
-        	var thumbs = document.createElement("img");
-        	thumbs.src = this.path + '/' + this.collection.models[i].get('src');
-        	thumbs.className = 'img-thumbnail col-sm-1';
-        	thumbs.id = "thumb" + i;
-        	this.el.appendChild(thumbs);
-      	} 
+        this.el.appendChild(captionDiv);
 	}
 });
 
 var EphemeraPageView = Backbone.View.extend({
 	initialize: function() {
 		this.images = new Images([
-			{src: "1960s-70s-Stahl-and-OS-awards-ceremonial.jpg"},
-			{src: "1990-92-Bangalore-Land-File-Log-Book 1.jpg"},
-			{src: "IMG_7024-NCBS-2016-lunch-time-play.jpg"},
-			{src: "Instem-construction.jpg"},
-			{src: "NCBS-campus-1998-elevation.jpg"},
-			{src: "TIFR-Penthouse-2.jpg"}, 
-			{src: "TIFR-Post-Lunch-Walk.jpg"}
+			{src: "1960s-70s-Stahl-and-OS-awards-ceremonial.jpg", caption: "In the late 1960s, Frank Stahl (right), a renowned biologist, came for a workshop to TIFR. Here, he participates (in ceremonial attire, a one-time event) in an awards function for those who attended a course in phage genetics."},
+			{src: "1.jpg", caption: "InStem building in construction. 2016."}, 
+			{src: "IMG_7024-NCBS-2016-lunch-time-play.jpg", caption: "Lunch time juxtapositions: Staff and students of NCBS gather for a lunch time cricket match. Adjacent to them (not seen), a student from Axel Brockmann’s group conducts an observational study of a beehive. "},
+			{src: "Instem-construction.jpg", caption: "InStem building in construction. 2016."},
+			{src: "NCBS-campus-1998-elevation.jpg", caption: "When Raj Rewal designed NCBS, he included chatris on the roofline. These would be places, they felt, where the scientific staff could stand in the shade and discuss their work. As it turns out, many air conditioner modules occupy the space today."},
+			{src: "TIFR-Penthouse-2.jpg", caption: "In the main academic block at TIFR, near the Director's office, is a room called the Penthouse. It used to be the telephone exchange. Today, it is the records room. Records are preserved, but it takes institutional memory to track them down, including the original DAE sanction order to build NCBS. "}, 
+			{src: "TIFR-Post-Lunch-Walk.jpg", caption: "The TIFR Wind Tunnel: Every day after lunch, the windy corridor between the Homi Bhabha Auditorium and the main academic block is the place where people walk back and forth to burn off their lunch, perhaps very different from the architects' vision when they designed the building. "}
 		]);
 	},
 	render: function() {
+		var ephemeraContainerDiv = document.createElement('div');
+		var curatorialNote = document.createElement('div');
+		curatorialNote.className = "container curatorialNote"
+		curatorialNote.innerHTML = '<h3 style="text-align: center"> Ephemera </h3> <br> <p> Ephemera focuses on a single object of curiosity from across the history of NCBS, TIFR and their communities.</p>';
+
 		var randomImageDiv = document.createElement('div');
 		randomImageDiv.id = "ephemera-container";
-		this.el.appendChild(randomImageDiv);
+		randomImageDiv.className = "container "
+
+		ephemeraContainerDiv.appendChild(curatorialNote);
+		ephemeraContainerDiv.appendChild(randomImageDiv);
+
+		this.el.appendChild(ephemeraContainerDiv);
+
 		var randomImageView = new EphermeraView({
 			el: randomImageDiv,
 			collection: this.images
 		});
 		randomImageView.render();
-
-		var thumbDiv = document.createElement('div');
-		this.el.appendChild(thumbDiv);
-		// var thumbView = new ThumbnailView({el: thumbDiv, collection: images});
-		// this.el.appendChild(thumbView.render());
 	}
 });

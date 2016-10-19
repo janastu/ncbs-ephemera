@@ -68,7 +68,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
   font-weight: 300; }
 
-a {
+#ncbs-nav-footer a {
   text-decoration: none;
   color: #3cb5f9; }
 
@@ -160,7 +160,7 @@ header {
     display: inline-block;
     float: right; }
     header nav a {
-      line-height: 75px;
+      line-height: 70px;
       margin-left: 20px;
       color: #fff;
       font-weight: 700;
@@ -182,7 +182,7 @@ header {
        }
     header.smaller h1 img{width:119px;}
     header.smaller nav a {
-      line-height: 40px; }
+      line-height: 70px; }
 
 /* =Footer
 -------------------------------------------------------------- */
@@ -225,7 +225,7 @@ header {
     header.smaller nav {
       height: 35px; }
       header.smaller nav a {
-        line-height: 35px; } }
+        line-height: 70px; } }
 @media all and (max-width: 600px) {
   .container {
     width: 100%; }
@@ -241,3 +241,25 @@ header {
     text-align: center; }
   #info-bar span.all-tutorials {
     border-bottom: solid 1px #0793e2; } }
+
+    .nav>li>a{
+      background-color: transparent;
+    }
+.nav>li>a:hover{
+  background-color: rgba(102, 102, 102, 0.2);
+}
+.nav>.dropdown>a:focus{
+  background-color: rgba(102, 102, 102, 0.2);
+}
+.nav>.dropdown>a:active{
+  background-color: rgba(102, 102, 102, 0.2);
+}
+
+.dropdown-menu li a {
+  color: white;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #357774;
+  color:white;
+}

@@ -1,61 +1,57 @@
 var Image = Backbone.Model.extend({
-  defaults: {
-    src: ""
-  }
+	defaults: {
+	    src: ""
+	}
 });
 
 var Images = Backbone.Collection.extend({
-  model: Image,
-  getRandomImage: function(path) {
-    path = path || './images/';
-    var idx = Math.floor( Math.random() * this.models.length );
-    return this.models[ idx ];
-  }
+	model: Image,
+	getRandomImage: function(path) {
+	    path = path || './img/Ephemera';
+        var idx = Math.floor( Math.random() * this.models.length );
+        return this.models[ idx ];
+	}
 });
 
 var EphermeraView = Backbone.View.extend({
-  initialize: function(obj) {
-    this.collection = obj.collection;
-    this.path = './images';
-  }, 
+	initialize: function(obj) {
+        this.collection = obj.collection;
+	    this.path = './img/Ephemera';
+	}, 
 
-  render: function() {
-    var img = this.collection.getRandomImage(this.path);
-    var elem = document.createElement("img");
-    elem.src = this.path + "/" + img.get('src');
-    elem.style.width = "50%";
-    document.getElementById('img-container').appendChild(elem);
-  }
-});
+	render: function() {
+	    var img = this.collection.getRandomImage(this.path);
 
-var ThumbnailView = Backbone.View.extend({
-  initialize: function(obj) {
-    this.collection = obj.collection;
-    this.path = './images';
-  },
+		var curatorialNote = document.createElement('div');
+		curatorialNote.className = "curatorialNote	"
+		curatorialNote.innerHTML = '<h3 style="text-align: center"> Ephemera </h3> <br> <p style="text-align: left"> Ephemera focuses on a single object of curiosity from across the history of NCBS, TIFR and their communities.</p>';
 
-  render: function() {
-    for (var i = 0; i < this.collection.models.length; i ++) {
-      var thumbs = document.createElement("img");
-      thumbs.src = this.path + '/' + this.collection.models[i].get('src');
-      thumbs.className = 'img-thumbnail col-sm-1';
-      thumbs.id = "thumb" + i;
-      document.getElementById('thumb-container').appendChild(thumbs);
-    } 
-  }, 
+		var ephemeraDiv = document.getElementById('img-container');
+		ephemeraDiv.id = "ephemera-container";
+		ephemeraDiv.className = "container";
+
+        var elem = document.createElement("img");
+        elem.src = this.path + "/" + img.get('src');
+        elem.style.width = "100%";
+
+        var captionDiv = document.createElement('div');
+        captionDiv.innerHTML = img.get('caption');
+       	captionDiv.className = 'captionEphImg col-md-12';
+
+       	ephemeraDiv.appendChild(curatorialNote);
+        ephemeraDiv.appendChild(elem);
+        ephemeraDiv.appendChild(captionDiv);
+	}
 });
 
 var images = new Images([
-	{src: "image1.jpg"},
-	{src: "image2.jpg"},
-	{src: "image3.jpg"},
-	{src: "image4.jpg"},
-	{src: "image5.jpg"},
-	{src: "image6.jpg"}
+	{src: "1960s-70s-Stahl-and-OS-awards-ceremonial.jpg", caption: "In the late 1960s, Frank Stahl (right), a renowned biologist, came for a workshop to TIFR. Here, he participates (in ceremonial attire, a one-time event) in an awards function for those who attended a course in phage genetics."},
+	{src: "1990-92-Bangalore-Land-File-Log-Book 1.jpg", caption : "File 181 in TIFR is synonymous with all things related to the TIFR Centre. People would check the logbook in and out, and it got especially busy in the years between 1990 and 1992. "},
+	{src: "2016_TIFR_bird-graffiti_home-featured-cropped.jpg", caption: "A crack in the wall that has taken a life of its own. TIFR, 2016."},
+	{src: "Instem-construction.jpg", caption: "InStem building in construction. 2016."},
+	{src: "NCBS-campus-1998-elevation.jpg", caption: "When Raj Rewal designed NCBS, he included chatris on the roofline. These would be places, they felt, where the scientific staff could stand in the shade and discuss their work. As it turns out, many air conditioner modules occupy the space today."},
+	{src: "TIFR-Penthouse-2.jpg", caption: "In the main academic block at TIFR, near the Director's office, is a room called the Penthouse. It used to be the telephone exchange. Today, it is the records room. Records are preserved, but it takes institutional memory to track them down, including the original DAE sanction order to build NCBS. "},
+	{src: "TIFR-Post-Lunch-Walk.jpg", caption: "The TIFR Wind Tunnel: Every day after lunch, the windy corridor between the Homi Bhabha Auditorium and the main academic block is the place where people walk back and forth to burn off their lunch, perhaps very different from the architects' vision when they designed the building. "}
 ]);
-
-var randomImageView = new EphermeraView({collection: images});
+var randomImageView = new EphermeraView({collection: this.images});
 randomImageView.render();
-
-var thumbView = new ThumbnailView({collection: images});
-thumbView.render();

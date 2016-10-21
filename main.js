@@ -23,7 +23,7 @@ var EphermeraView = Backbone.View.extend({
 	    var img = this.collection.getRandomImage(this.path);
 			var curatorialNote = document.createElement('div');
 			curatorialNote.className = "curatorialNote	"
-			curatorialNote.innerHTML = '<br> <p style="text-align: left"> Ephemera focuses on a single object of curiosity from across the history of NCBS, TIFR and their communities.</p>';
+			curatorialNote.innerHTML = '<br> <p style="text-align: left"> Ephemera: Focuses on a single object of curiosity from across the history of NCBS, TIFR and their communities.</p>';
 
 			var ephemeraDiv = document.getElementById('img-container');
 			ephemeraDiv.id = "ephemera-container";

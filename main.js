@@ -21,7 +21,6 @@ var EphermeraView = Backbone.View.extend({
 	}, 
 	render: function() {
 	    var img = this.collection.getRandomImage(this.path);
-	    if (img.get('type') == "image") {
 			var curatorialNote = document.createElement('div');
 			curatorialNote.className = "curatorialNote	"
 			curatorialNote.innerHTML = '<h3 style="text-align: center"> Ephemera </h3> <br> <p style="text-align: left"> Ephemera focuses on a single object of curiosity from across the history of NCBS, TIFR and their communities.</p>';
@@ -29,42 +28,29 @@ var EphermeraView = Backbone.View.extend({
 			var ephemeraDiv = document.getElementById('img-container');
 			ephemeraDiv.id = "ephemera-container";
 			ephemeraDiv.className = "container";
-
-	        var elem = document.createElement("img");
-	        elem.src = this.path + "/" + img.get('src');
-	        elem.style.width = "100%";
-
-	        var captionDiv = document.createElement('div');
+	    	
+	    	var captionDiv = document.createElement('div');
 	        captionDiv.innerHTML = img.get('caption');
 	       	captionDiv.className = 'captionEphImg col-md-12';
 
 	       	ephemeraDiv.appendChild(curatorialNote);
-	        ephemeraDiv.appendChild(elem);
-	        ephemeraDiv.appendChild(captionDiv);
-	    }
-	    else {
-	    	var curatorialNote = document.createElement('div');
-			curatorialNote.className = "curatorialNote	"
-			curatorialNote.innerHTML = '<h3 style="text-align: center"> Ephemera </h3> <br> <p style="text-align: left"> Ephemera focuses on a single object of curiosity from across the history of NCBS, TIFR and their communities.</p>';
+	       	
+	    	if (img.get('type') == "image") {
+		        var elem = document.createElement("img");
+		        elem.src = this.path + "/" + img.get('src');
+	    	    elem.style.width = "100%";
+	    	    ephemeraDiv.appendChild(elem);
+	        	ephemeraDiv.appendChild(captionDiv);
 
-			var ephemeraDiv = document.getElementById('img-container');
-			ephemeraDiv.id = "ephemera-container";
-			ephemeraDiv.className = "container";
-
-	        var elem = document.createElement("video");
-	        elem.src = this.path + "/" + img.get('src');
-	        elem.style.width = "100%";
-	        elem.controls = "true";
-	        elem.play()
-
-	        var captionDiv = document.createElement('div');
-	        captionDiv.innerHTML = img.get('caption');
-	       	captionDiv.className = 'captionEphImg col-md-12';
-
-	       	ephemeraDiv.appendChild(curatorialNote);
-	        ephemeraDiv.appendChild(elem);
-	        ephemeraDiv.appendChild(captionDiv);
-	    	console.log("ITs is a video");
+		    }
+		    else {
+		        var elem = document.createElement("video");
+		        elem.src = this.path + "/" + img.get('src');
+		        elem.style.width = "100%";
+		        elem.controls = "true";
+		        elem.play()
+		        ephemeraDiv.appendChild(elem);
+				ephemeraDiv.appendChild(captionDiv);		        
 	    }
 	}
 });

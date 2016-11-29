@@ -102,11 +102,11 @@
 		}
 		.curatorialNote {
 			left: 0;
-			margin-top: 10%;
+			/*margin-top: 10%;*/
 			color: #505050;
 			font-family: roboto;
 			font-size: 15px;
-
+			margin-bottom: 15px;
 		}
 		.captionEphImg {
 			text-align: left;
@@ -115,7 +115,9 @@
 			font-size: 12px;
 }
 
-
+#ephemera-container {
+	margin-top: 100px;
+}
 
 
 
